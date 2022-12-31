@@ -1,0 +1,11 @@
+SET(LIBHELLO_SRC hello.cpp)
+# hello_static 就是正常的库名，⽣成的名字前⾯会加上lib。动态库是libhello_static.so，静态库是libhello_static.a
+# SHARED，动态库 STATIC，静态库
+ADD_LIBRARY(hello_static STATIC ${LIBHELLO_SRC})
+# 同时构建静态库和动态库
+SET_TARGET_PROPERTIES(hello_static PROPERTIES OUTPUT_NAME "hello")
+SET_TARGET_PROPERTIES(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+
+ADD_LIBRARY(hello SHARED ${LIBHELLO_SRC})
+SET_TARGET_PROPERTIES(hello PROPERTIES OUTPUT_NAME "hello")
+SET_TARGET_PROPERTIES(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1)
